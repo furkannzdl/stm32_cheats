@@ -1940,3 +1940,50 @@ arm-none-eabi-size  ADC.elf
   20484	     92	   2564	  23140	   5a64	ADC.elf
 Finished building: default.size.stdout
  
+18:06:16 **** Incremental Build of configuration Debug for project ADC ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g -DDEBUG -DUSE_HAL_DRIVER -DSTM32G030xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:136:32: warning: implicit declaration of function 'sqrtf' [-Wimplicit-function-declaration]
+  136 |         rms_value = (uint16_t)(sqrtf((float)sum_sq / ADC_BUF_LEN));
+      |                                ^~~~~
+../Core/Src/main.c:21:1: note: include '<math.h>' or provide a declaration of 'sqrtf'
+   20 | #include "main.h"
+  +++ |+#include <math.h>
+   21 | 
+../Core/Src/main.c:136:32: warning: incompatible implicit declaration of built-in function 'sqrtf' [-Wbuiltin-declaration-mismatch]
+  136 |         rms_value = (uint16_t)(sqrtf((float)sum_sq / ADC_BUF_LEN));
+      |                                ^~~~~
+../Core/Src/main.c:136:32: note: include '<math.h>' or provide a declaration of 'sqrtf'
+../Core/Src/main.c:139:29: warning: implicit declaration of function 'ReadVrefintOnce' [-Wimplicit-function-declaration]
+  139 |         uint16_t vref_adc = ReadVrefintOnce();
+      |                             ^~~~~~~~~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:181:1: error: expected identifier or '(' before '}' token
+  181 | }
+      | ^
+../Core/Src/main.c:384:17: error: conflicting types for 'ReadVrefintOnce'; have 'uint16_t(void)' {aka 'short unsigned int(void)'}
+  384 | static uint16_t ReadVrefintOnce(void)
+      |                 ^~~~~~~~~~~~~~~
+../Core/Src/main.c:139:29: note: previous implicit declaration of 'ReadVrefintOnce' with type 'int()'
+  139 |         uint16_t vref_adc = ReadVrefintOnce();
+      |                             ^~~~~~~~~~~~~~~
+../Core/Src/main.c:384:17: warning: 'ReadVrefintOnce' defined but not used [-Wunused-function]
+  384 | static uint16_t ReadVrefintOnce(void)
+      |                 ^~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+18:08:16 **** Incremental Build of configuration Debug for project ADC ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g -DDEBUG -DUSE_HAL_DRIVER -DSTM32G030xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "ADC.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\Provar\STM32CubeIDE\workspace_1.19.0\ADC\STM32G030F6PX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ADC.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ADC.elf
+ 
+arm-none-eabi-size  ADC.elf 
+arm-none-eabi-objdump -h -S ADC.elf  > "ADC.list"
+   text	   data	    bss	    dec	    hex	filename
+  20540	     92	   2564	  23196	   5a9c	ADC.elf
+Finished building: default.size.stdout
+ 
+Finished building: ADC.list
+ 

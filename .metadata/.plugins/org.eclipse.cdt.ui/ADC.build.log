@@ -1,10 +1,17 @@
-17:39:34 **** Incremental Build of configuration Debug for project ADC ****
+18:08:16 **** Incremental Build of configuration Debug for project ADC ****
 make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g -DDEBUG -DUSE_HAL_DRIVER -DSTM32G030xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "ADC.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\Provar\STM32CubeIDE\workspace_1.19.0\ADC\STM32G030F6PX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ADC.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ADC.elf
+ 
 arm-none-eabi-size  ADC.elf 
+arm-none-eabi-objdump -h -S ADC.elf  > "ADC.list"
    text	   data	    bss	    dec	    hex	filename
-  20484	     92	   2564	  23140	   5a64	ADC.elf
+  20540	     92	   2564	  23196	   5a9c	ADC.elf
 Finished building: default.size.stdout
  
+Finished building: ADC.list
+ 
 
-17:39:35 Build Finished. 0 errors, 0 warnings. (took 242ms)
+18:08:17 Build Finished. 0 errors, 0 warnings. (took 1s.264ms)
 
