@@ -146,8 +146,24 @@ void SysTick_Handler(void)
 void TIM3_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM3_IRQn 0 */
-  // Her timer interrupt geldiğinde PA11 toggle edilsin
-  HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_12);
+  static uint8_t step = 0;  // Hangi LED yanacak, hafızada tutulur
+
+  // Tüm LED’leri söndür (önce kapatıyoruz ki sadece biri yansın)
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11|GPIO_PIN_12|GPIO_PIN_13, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_3, GPIO_PIN_RESET);
+
+  // Sıradaki LED’i yak
+  switch(step)
+  {
+    case 0: HAL_GPIO_WritePin(GPIOA, GPIO_PIN_13, GPIO_PIN_SET); break;
+    case 1: HAL_GPIO_WritePin(GPIOA, GPIO_PIN_12, GPIO_PIN_SET); break;
+    case 2: HAL_GPIO_WritePin(GPIOB, GPIO_PIN_3, GPIO_PIN_SET); break;
+    case 3: HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11,  GPIO_PIN_SET); break;
+  }
+
+  // Bir sonraki adıma geç
+  step++;
+  if(step > 3) step = 0;   // 4 LED’den sonra tekrar başa dön
   /* USER CODE END TIM3_IRQn 0 */
 
   HAL_TIM_IRQHandler(&htim3);
@@ -155,6 +171,7 @@ void TIM3_IRQHandler(void)
   /* USER CODE BEGIN TIM3_IRQn 1 */
   /* USER CODE END TIM3_IRQn 1 */
 }
+
 
 
 /* USER CODE BEGIN 1 */

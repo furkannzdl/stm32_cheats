@@ -1,0 +1,10 @@
+15:26:30 **** Build of configuration Debug for project UART ****
+make -j12 all 
+arm-none-eabi-size  UART.elf 
+   text	   data	    bss	    dec	    hex	filename
+  10540	     12	   1716	  12268	   2fec	UART.elf
+Finished building: default.size.stdout
+ 
+
+15:26:30 Build Finished. 0 errors, 0 warnings. (took 315ms)
+
